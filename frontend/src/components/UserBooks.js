@@ -27,9 +27,6 @@ const UserBooks = () => {
           return (
             <li>
               <Book
-               id={book._id}
-               key={index}
-               isUser={true}
                book={book}
               />
             </li>

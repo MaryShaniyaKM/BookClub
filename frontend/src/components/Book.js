@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import "./Book.css"
 import axios from 'axios';
+
 function Book(props) {
  const navigate= useNavigate();
   console.log("path",window.location.pathname)
@@ -23,15 +24,16 @@ function Book(props) {
       .then(() => history("/books"));
   };
   return (
-    <>                              
+    <>     
+                         
      <div className="card" >
-      <Button sx={{marginLeft:23}}
+      <Button sx={{marginLeft:20}}
       onClick={()=>navigate(`/books/${_id}`)}>view</Button>
       <img src={image} alt={name} />
-      <h3>{name}</h3>
+      <h4>{name}</h4>
       <article>By {author}</article>
       {/* <p>{description}</p> */}
-      <h3>Rs {price}</h3>
+      <h5>Rs {price}</h5>
 
    { path==='/myBooks'?
       <>

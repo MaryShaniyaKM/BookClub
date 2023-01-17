@@ -125,11 +125,9 @@ const searchBook = async (req, res, next) => {
     const allData = await Book.find()
     const filteredData=await allData.filter((data) => {
         console.log(data.name.toLocaleLowerCase());
-       return data.name.toLocaleLowerCase().includes(key)
+       return data.name.toLocaleLowerCase().includes(key.toLocaleLowerCase())
     })
     console.log(filteredData);
-
-
     try {
         res.send({
             message: "success",
@@ -137,7 +135,6 @@ const searchBook = async (req, res, next) => {
         })
     }
     catch (err) {
-
         res.send({
             message: "error",
             data: err

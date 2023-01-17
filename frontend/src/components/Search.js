@@ -10,21 +10,25 @@ import Typography from "@mui/material/Typography";
 
 function Search() {
   const [search, setSearch] = useState("");
+  const [flag, setFlag] = useState(false);
+
+
   const [display, setdisplay] = useState([]);
 
   const handleChangeSearch = (event) => {
     setSearch(event.target.value);
   };
   console.log("search", search);
+  
   const onSubmitHandle = async (event) => {
     event.preventDefault();
+    setFlag(true)
     const result = await axios
       .post("http://localhost:2000/api/book/search", { key: search })
     try {
       console.log('testing');
       console.log(result.data.data);
       console.log('testing 3',display.length);
-
       setdisplay(result.data.data);
       
     }
@@ -37,16 +41,16 @@ function Search() {
     <div>
       <form onSubmit={onSubmitHandle}>
         <input
-          style={{ marginLeft: "400px", width: "280px", height: "20px", marginTop: "30px", borderRadius: "8px" }}
+          style={{ marginLeft: "400px", width: "280px", height: "30px", marginTop: "30px", borderRadius: "10px" }}
           name="search"
 
           value={search}
           onChange={handleChangeSearch}
           placeholder="search here"
         />
-        <button style={{ borderRadius: '6px' }}>search</button>
+        <button  style={{ borderRadius: '10px' }}>search</button>
       </form>
-      {display.length!=0?<>
+      {display.length!=0 && search.length!=0?<>
       {display.map((result) => 
          ( 
           <div className="card" style={{ maxWidth: "300px", marginTop: "30px" }}>
@@ -54,10 +58,10 @@ function Search() {
             <h3>{result.name}</h3>
             <article>By {result.author}</article>
             <h3>Rs {result.price}</h3>
-          </div> ))}</>:(<center><h2>sorry,no results found...</h2></center>)}
-       
+          </div> ))}</>:flag&&search?(<center><h2>Try searching for another books,author,price or title</h2></center>):''}
+        
     </div>
-  );
+  )
 };
 
 export default Search;

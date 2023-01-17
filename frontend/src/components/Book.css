@@ -37,7 +37,12 @@ ul {
     padding: 5px;
     margin: auto;
   }
-  .card h3 {
+  .card h4 {
+    padding:3px;
+    margin:auto;
+    
+  }
+  .card h5 {
     padding: 2px;
     margin:auto;
   }
